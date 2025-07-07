@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Exclusiva - E-book Gratuito!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos gerais para o corpo da página */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5; /* Um fundo suave para a página */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Garante que o corpo ocupe toda a altura da viewport */
+            box-sizing: border-box;
+            overflow: hidden; /* Esconde barras de rolagem se o popup for o único conteúdo */
+        }
+
+        /* Estilos do Popup */
+        #popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex; /* O popup será visível por padrão nesta página */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.5s ease;
+        }
+        #popup-box {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            max-width: 450px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.5s ease;
+            border-left: 6px solid #2F7034;
+        }
+        #popup-box h2 {
+            font-size: 1.8rem;
+            color: #2F7034;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .ebook-received {
+            margin-bottom: 20px;
+        }
+        .ebook-icon-large {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+        .ebook-received h3 {
+            color: #2F7034;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .ebook-received p {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        #download-ebook-link { /* Estilo específico para o link de download */
+            display: inline-block;
+            background: linear-gradient(135deg, #2F7034 0%, #65A765 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        #download-ebook-link:hover {
+            background: linear-gradient(135deg, #65A765 0%, #2F7034 100%);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(47, 112, 52, 0.4);
+        }
+        #close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+        #close-popup:hover {
+            color: #d63031;
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Estilos do Formulário */
+        #followit-form {
+            margin: 0;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .newsletter-form input[type="email"] {
+            padding: 12px;
+            border: 2px solid #2F7034;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            width: 60%;
+            min-width: 200px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .newsletter-form input[type="email"]:focus {
+            outline: none;
+            border-color: #65A765;
+            box-shadow: 0 0 8px rgba(47, 112, 52, 0.3);
+            transform: translateY(-1px);
+        }
+        .newsletter-form button {
+            background: linear-gradient(135deg, #2F7034 0%, #65A765 100%);
+            color: #fff;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            min-width: 150px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .newsletter-form button:hover {
+            background: linear-gradient(135deg, #65A765 0%, #2F7034 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(47, 112, 52, 0.4);
+        }
+        .newsletter-form button:active {
+            transform: translateY(0);
+        }
+        .newsletter-form button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Estilos do Follow.it powered by */
+        .followit--follow-form-container {
+            width: 100%;
+        }
+        .powered-by-line {
+            margin-top: 10px;
+            display: inline-block;
+            color: #666;
+            font-size: 0.75rem;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .powered-by-line:hover {
+            opacity: 1;
+        }
+        .powered-by-line img {
+            margin-left: 4px;
+        }
+        .privacy-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(47, 112, 52, 0.2);
+        }
+        .privacy-info small {
+            color: #666;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        /* Estilos do Success Message (barra de notificação) */
+        #success-message {
+            display: none;
+            margin-top: 15px;
+            color: #2F7034;
+            font-weight: bold;
+            background: rgba(47, 112, 52, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(47, 112, 52, 0.3);
+            text-align: center;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 600px) {
+            #popup-box {
+                margin: 20px;
+                padding: 25px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            .newsletter-form input[type="email"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .newsletter-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Popup de E-book -->
+    <div id='popup-overlay'>
+        <div id='popup-box'>
+            <span id='close-popup'>&#215;</span>
+
+            <!-- Conteúdo do popup antes da inscrição -->
+            <div id="initial-popup-content">
+                <h2>Assine e Receba seu E-book!</h2>
+                <div class='ebook-received'>
+                    <div class='ebook-icon-large'>📘</div>
+                    <h3>Checklist Definitivo de Conformidade para Startups</h3>
+                    <p>Inscreva-se na nossa newsletter para receber este e-book exclusivo e manter-se atualizado com as melhores práticas!</p>
+                </div>
+                
+                <!-- Formulário Follow.it oficial -->
+                <div class='followit--follow-form-container' style="margin-top: 20px;">
+                    <form action='https://api.follow.it/subscription-form/cThzVXcvQXRIamRTUHdvSVg5TVZlanliOXFpcTkzNVBKZVdCSW9zT3FSNU04SjgxMjJuSisvMlJsYXgzS3QyS3NwdFNWb05BZWkxT0ZUQmZIN0xjbUdiQ1lqVDM3U0tGTmZTQWZRVnJwNjdIN0xjbUdiQ1lqVDM3U0tGTmZTQWZRVnJwNjdINmZ5YWRaVGNjMnB6MldCZEpPRlR8a1hDSXluVU5nekNhRk1JbVlLdEE1bUQxV2dTUVZ3MW0zcjhHbThGalJ3dz0=/8' id='followit-form' method='post' target='_blank'>
+                        <div class='newsletter-form'>
+                            <input id='user-email' name='email' placeholder='Digite seu e-email' required='required' type='email'/>
+                            <button id='subscribe-btn' type='submit'>Assinar e Receber E-book</button>
+                        </div>
+                    </form>
+                    <a class='powered-by-line' href='https://follow.it'>
+                        Powered by 
+                        <img alt='follow.it' height='12px' src='https://follow.it/images/colored-logo.svg' style='vertical-align: middle;'/>
+                    </a>
+                </div>
+                <div id='initial-privacy-info' class='privacy-info'>
+                    <small>📧 Respeitamos sua privacidade. Você pode cancelar a inscrição a qualquer momento.</small>
+                </div>
+            </div>
+
+            <!-- Conteúdo do popup após a inscrição (inicialmente oculto) -->
+            <div id="subscribed-popup-content" style="display: none;">
+                <h2>🎉 Parabéns!</h2>
+                <div class='ebook-received'>
+                    <div class='ebook-icon-large'>📘</div>
+                    <h3>Seu E-book Está Pronto!</h3>
+                    <p><strong>Checklist Definitivo de Conformidade para Startups</strong></p>
+                    <p>Obrigado por se inscrever! <strong>Verifique seu e-mail para confirmar a inscrição</strong> e baixar seu e-book:</p>
+                </div>
+                <a href='https://drive.proton.me/urls/QWYMT6PKFM#EY75XZt-k_O_' onclick='trackDownload()' target='_blank' id="download-ebook-link">🔽 Baixar E-book Agora</a>
+                <div id='subscribed-privacy-info' class='privacy-info'>
+                    <small>📧 Respeitamos sua privacidade. Você pode cancelar a inscrição a qualquer momento.</small>
+                </div>
+            </div>
+
+            <!-- Barra de mensagem de sucesso/erro (visível em ambos os estados) -->
+            <div id='success-message'>
+                <!-- A mensagem será atualizada dinamicamente aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupOverlay = document.getElementById('popup-overlay');
+            const closePopupButton = document.getElementById('close-popup');
+            const followitForm = document.getElementById('followit-form');
+            const subscribeBtn = document.getElementById('subscribe-btn');
+            const successMessage = document.getElementById('success-message');
+            const userEmailInput = document.getElementById('user-email');
+
+            const initialPopupContent = document.getElementById('initial-popup-content');
+            const subscribedPopupContent = document.getElementById('subscribed-popup-content');
+            const downloadLink = document.getElementById('download-ebook-link');
+
+            // O popup é sempre visível ao carregar esta página
+            popupOverlay.style.display = 'flex';
+
+            // --- Funções Auxiliares ---
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            function showMessage(message, isError = false) {
+                successMessage.textContent = message;
+                successMessage.style.backgroundColor = isError ? 'rgba(255, 99, 71, 0.1)' : 'rgba(47, 112, 52, 0.1)';
+                successMessage.style.borderColor = isError ? 'rgba(255, 99, 71, 0.3)' : 'rgba(47, 112, 52, 0.3)';
+                successMessage.style.color = isError ? '#D63031' : '#2F7034';
+                successMessage.style.display = 'block';
+            }
+
+            function hideMessage() {
+                successMessage.style.display = 'none';
+            }
+
+            // Função para redirecionar para a página principal do blog
+            function redirectToMainBlog() {
+                // SUBSTITUA AQUI PELA URL DA SUA HOMEPAGE DO BLOG
+                window.location.href = 'https://ecoestatus.blogspot.com/'; 
+            }
+
+            // --- Lógica de Interceptação do Formulário Follow.it ---
+            followitForm.addEventListener('submit', function(e) {
+                const email = userEmailInput.value;
+
+                if (!email || !validateEmail(email)) {
+                    e.preventDefault(); // Impede o envio se o e-mail for inválido
+                    showMessage('Por favor, insira um e-mail válido.', true);
+                    return;
+                }
+
+                // Desabilitar o botão e mostrar mensagem de envio
+                subscribeBtn.disabled = true;
+                subscribeBtn.textContent = 'Enviando...';
+                hideMessage(); // Esconde qualquer mensagem anterior
+
+                // Marcar que o usuário se inscreveu permanentemente
+                localStorage.setItem('hasSubscribed', 'true');
+
+                // Transiciona o conteúdo do popup imediatamente
+                initialPopupContent.style.display = 'none';
+                subscribedPopupContent.style.display = 'block';
+                showMessage('🎉 Obrigado por se inscrever! Redirecionando para o Follow.it...', false);
+
+                // O formulário será submetido naturalmente (target="_blank" cuidará da nova aba)
+                // Após um pequeno atraso, redireciona para o blog principal
+                setTimeout(redirectToMainBlog, 3000); // Redireciona após 3 segundos
+            });
+
+            // --- Lógica de Rastreamento de Download ---
+            function trackDownload() {
+                console.log('Download do e-book iniciado');
+                
+                // Google Analytics tracking (se disponível)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download', {
+                        'event_category': 'ebook',
+                        'event_label': 'checklist-conformidade-startups'
+                    });
+                }
+                
+                // Facebook Pixel (se disponível)
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead', {
+                        content_name: 'E-book Checklist Conformidade'
+                    });
+                }
+                // Redireciona para o blog principal após o clique no download
+                setTimeout(redirectToMainBlog, 1000); // Redireciona após 1 segundo
+            }
+            // Atribuir a função ao clique do link de download
+            downloadLink.addEventListener('click', trackDownload);
+
+            // --- Lógica para Fechar o Popup ---
+            closePopupButton.onclick = function() {
+                popupOverlay.style.display = 'none';
+                hideMessage();
+                redirectToMainBlog(); // Redireciona para o blog principal ao fechar
+            };
+
+            // Fechar popup clicando fora da caixa
+            popupOverlay.onclick = function(event) {
+                if (event.target === popupOverlay) { // Verifica se o clique foi no overlay e não na caixa do popup
+                    popupOverlay.style.display = 'none';
+                    hideMessage();
+                    redirectToMainBlog(); // Redireciona para o blog principal ao clicar fora
+                }
+            };
+
+            // Fechar popup com tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    popupOverlay.style.display = 'none';
+                    hideMessage();
+                    redirectToMainBlog(); // Redireciona para o blog principal ao pressionar ESC
+                }
+            });
+
+            // Adicionar evento keypress para Enter no campo de email
+            userEmailInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Impede o comportamento padrão de nova linha
+                    followitForm.requestSubmit(); // Simula o clique no botão de submit
+                }
+            });
+
+            // Se o usuário já se inscreveu, mostra o conteúdo de "já inscrito"
+            // Isso é útil se o usuário voltar a esta página de destino
+            if (localStorage.getItem('hasSubscribed')) {
+                initialPopupContent.style.display = 'none';
+                subscribedPopupContent.style.display = 'block';
+                showMessage('Você já está inscrito! Baixe seu e-book.', false);
+                // Não redireciona imediatamente se já inscrito, para que ele possa baixar o e-book novamente
+            } else {
+                initialPopupContent.style.display = 'block';
+                subscribedPopupContent.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
