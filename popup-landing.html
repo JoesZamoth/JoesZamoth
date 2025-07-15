@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oferta Exclusiva - E-book Gratuito!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Manter Montserrat se for usado pelo Follow.it -->
     <style>
         /* Estilos gerais para o corpo da página */
         body {
@@ -35,70 +36,77 @@
             animation: fadeIn 0.5s ease;
         }
         #popup-box {
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 20px;
-            max-width: 450px;
+            background: #ffffff; /* Cor de fundo do popup */
+            padding: 40px; /* Aumentado o padding para mais espaço interno */
+            border-radius: 15px; /* Ligeiramente mais arredondado */
+            max-width: 480px; /* Aumentado a largura máxima */
+            width: 90%; /* Largura responsiva */
             text-align: center;
             font-family: 'Poppins', sans-serif;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
             position: relative;
+            border: none; /* Removida a borda geral, vamos usar a borda esquerda para destaque */
+            border-left: 8px solid #2F7034; /* Borda esquerda mais proeminente */
             animation: slideUp 0.5s ease;
-            border-left: 6px solid #2F7034;
+            box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total */
         }
         #popup-box h2 {
-            font-size: 1.8rem;
+            font-size: 2rem; /* Título maior e mais impactante */
             color: #2F7034;
             margin-bottom: 15px;
             font-weight: 700;
+            line-height: 1.2;
         }
         .ebook-received {
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Mais espaço abaixo do preview do e-book */
         }
         .ebook-icon-large {
-            font-size: 4rem;
-            margin-bottom: 10px;
+            font-size: 4.5rem; /* Ícone maior */
+            margin-bottom: 15px;
+            color: #2F7034; /* Cor do ícone */
         }
         .ebook-received h3 {
             color: #2F7034;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-size: 1.4rem; /* Título secundário maior */
             font-weight: 600;
         }
         .ebook-received p {
             color: #555;
             margin-bottom: 10px;
             line-height: 1.5;
+            font-size: 1rem;
         }
         #download-ebook-link { /* Estilo específico para o link de download */
             display: inline-block;
             background: linear-gradient(135deg, #2F7034 0%, #65A765 100%);
             color: white;
-            padding: 15px 30px;
-            border-radius: 12px;
+            padding: 15px 35px; /* Aumentado o padding */
+            border-radius: 10px; /* Ligeiramente menos arredondado para um aspeto mais sólido */
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700; /* Mais negrito */
+            font-size: 1.15rem; /* Texto maior */
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 20px; /* Mais espaço acima */
+            box-shadow: 0 4px 10px rgba(47, 112, 52, 0.3); /* Sombra para o botão */
         }
         #download-ebook-link:hover {
             background: linear-gradient(135deg, #65A765 0%, #2F7034 100%);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(47, 112, 52, 0.4);
+            transform: translateY(-3px); /* Efeito de "levantar" mais pronunciado */
+            box-shadow: 0 8px 20px rgba(47, 112, 52, 0.5);
         }
         #close-popup {
             position: absolute;
             top: 15px;
             right: 20px;
-            font-size: 28px;
-            color: #666;
+            font-size: 32px; /* Ícone de fechar maior */
+            color: #888; /* Cor mais suave */
             cursor: pointer;
             transition: color 0.3s ease;
             line-height: 1;
         }
         #close-popup:hover {
-            color: #d63031;
+            color: #e74c3c; /* Vermelho mais vibrante ao passar o rato */
         }
         
         /* Animações */
@@ -113,122 +121,167 @@
         
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.01); } /* Pulsação mais subtil */
         }
 
-        /* Estilos do Formulário */
-        #followit-form {
-            margin: 0;
+        /* Estilos do Formulário (Integrando o novo CSS do Follow.it) */
+        .followit--follow-form-container {
+            width: 100%;
+            margin-top: 25px; /* Mais espaço acima do formulário */
         }
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Estilos do Follow.it Embed - SOBRESCRITOS E AJUSTADOS */
+        /* Estes seletores específicos com [attr-a] são do código de incorporação do Follow.it */
+        /* Usamos [data-v-a750b30b] para ser mais específico e sobrescrever os estilos inline */
+        .followit--follow-form-container[data-v-a750b30b] .form-preview { 
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            margin-top: 0 !important; /* Ajustado para 0, pois o container já tem margin-top */
+            padding: clamp(17px, 5%, 40px) clamp(17px, 7%, 50px) !important;
+            max-width: none !important;
+            border-radius: 6px !important;
+            box-shadow: 0 5px 25px rgba(34, 60, 47, 0.1) !important; /* Sombra mais suave */
+            background-color: #ffffff !important; /* Fundo branco para o preview */
+            border: 1px solid #e9e8e8 !important; /* Borda suave para o preview */
         }
-        .newsletter-form input[type="email"] {
-            padding: 12px;
-            border: 2px solid #2F7034;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            width: 60%;
-            min-width: 200px;
-            font-size: 1rem;
+        .followit--follow-form-container[data-v-a750b30b] .form-preview,
+        .followit--follow-form-container[data-v-a750b30b] .form-preview *{
+            box-sizing: border-box !important;
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-heading {
+            width: 100% !important;
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-heading h5{
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            font-family: 'Poppins', sans-serif !important; /* Força Poppins */
+            font-weight: 600 !important; /* Mais negrito */
+            color: #2F7034 !important; /* Cor do tema */
+            font-size: 1.2rem !important; /* Tamanho maior */
+            text-align: center !important;
+            text-transform: none !important; /* Garante que não há transformação de texto */
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-input-field {
+            width: 100% !important;
+            margin-top: 0 !important; /* Remove margem padrão */
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-input-field input[type="email"] {
+            width: calc(100% - 24px) !important; /* Ajusta largura para padding */
+            padding: 14px 12px !important; /* Aumenta padding */
+            border: 1px solid #ccc !important; /* Borda mais suave */
+            border-radius: 8px !important;
+            font-family: 'Poppins', sans-serif !important; /* Força Poppins */
+            font-size: 1rem !important;
+            color: #333 !important;
+            background-color: #f9f9f9 !important; /* Fundo ligeiramente cinza */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08) !important; /* Sombra interna sutil */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            text-align: left !important; /* Alinhamento do texto no campo */
+            text-transform: none !important; /* Garante que não há transformação de texto */
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-input-field input[type="email"]:focus {
+            border-color: #2F7034 !important;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08), 0 0 5px rgba(47, 112, 52, 0.2) !important;
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-submit-button {
+            width: 100% !important;
+            margin-top: 15px !important; /* Mais espaço acima do botão */
+        }
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-submit-button button {
+            width: 100% !important;
+            height: 50px !important; /* Altura maior para o botão */
+            border: 0 !important;
+            border-radius: 8px !important; /* Ajustado para 8px */
+            line-height: normal !important; /* Ajustado para alinhar o texto */
+            font-family: 'Poppins', sans-serif !important; /* Força Poppins */
+            font-weight: 700 !important; /* Mais negrito */
+            font-size: 1.15rem !important; /* Tamanho maior */
+            background: linear-gradient(135deg, #2F7034 0%, #65A765 100%) !important; /* Gradiente do tema */
+            color: #fff !important;
+            box-shadow: 0 4px 10px rgba(47, 112, 52, 0.3); /* Sombra para o botão */
             transition: all 0.3s ease;
+            text-align: center !important; /* Alinhamento do texto no botão */
+            text-transform: none !important; /* Garante que não há transformação de texto */
         }
-        .newsletter-form input[type="email"]:focus {
-            outline: none;
-            border-color: #65A765;
-            box-shadow: 0 0 8px rgba(47, 112, 52, 0.3);
-            transform: translateY(-1px);
-        }
-        .newsletter-form button {
-            background: linear-gradient(135deg, #2F7034 0%, #65A765 100%);
-            color: #fff;
-            padding: 12px 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            min-width: 150px;
-            font-family: 'Poppins', sans-serif;
-        }
-        .newsletter-form button:hover {
-            background: linear-gradient(135deg, #65A765 0%, #2F7034 100%);
+        .followit--follow-form-container[data-v-a750b30b] .form-preview .preview-submit-button button:hover {
+            cursor: pointer !important;
+            background: linear-gradient(135deg, #65A765 0%, #2F7034 100%) !important;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(47, 112, 52, 0.4);
         }
-        .newsletter-form button:active {
-            transform: translateY(0);
-        }
-        .newsletter-form button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
         
-        /* Estilos do Follow.it powered by */
-        .followit--follow-form-container {
-            width: 100%;
-        }
         .powered-by-line {
-            margin-top: 10px;
-            display: inline-block;
-            color: #666;
-            font-size: 0.75rem;
-            text-decoration: none;
-            opacity: 0.7;
+            margin-top: 20px !important; /* Mais espaço acima */
+            display: flex !important; /* Usar flex para centrar a imagem */
+            justify-content: center !important; /* Centrar horizontalmente */
+            align-items: center !important; /* Centrar verticalmente */
+            color: #999 !important; /* Cor mais suave */
+            font-family: 'Poppins', sans-serif !important; /* Força Poppins */
+            font-size: 0.8rem !important; /* Ligeiramente maior */
+            font-weight: 400 !important;
+            line-height: normal !important; /* Ajustado para normal */
+            text-align: center !important;
+            text-decoration: none !important;
+            opacity: 0.8;
             transition: opacity 0.3s ease;
         }
         .powered-by-line:hover {
             opacity: 1;
         }
         .powered-by-line img {
-            margin-left: 4px;
+            margin-left: 8px !important; /* Mais espaço entre texto e logo */
+            height: 1.2em !important; /* Ícone do Follow.it ligeiramente maior */
+            max-height: 1.2em !important;
+            vertical-align: middle !important;
         }
         .privacy-info {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(47, 112, 52, 0.2);
+            margin-top: 25px; /* Mais espaço acima */
+            padding-top: 20px;
+            border-top: 1px solid rgba(47, 112, 52, 0.1);
         }
         .privacy-info small {
-            color: #666;
-            font-size: 0.75rem;
+            color: #777;
+            font-size: 0.8rem; /* Ligeiramente maior */
             line-height: 1.4;
         }
 
         /* Estilos do Success Message (barra de notificação) */
         #success-message {
             display: none;
-            margin-top: 15px;
+            margin-top: 25px; /* Mais espaço acima */
             color: #2F7034;
             font-weight: bold;
             background: rgba(47, 112, 52, 0.1);
-            padding: 10px;
+            padding: 15px; /* Mais padding */
             border-radius: 8px;
             border: 1px solid rgba(47, 112, 52, 0.3);
             text-align: center;
+            font-size: 1rem; /* Ligeiramente maior */
         }
         
         /* Responsividade */
         @media (max-width: 600px) {
             #popup-box {
-                margin: 20px;
-                padding: 25px;
+                padding: 30px; /* Reduzir padding em mobile */
             }
-            .newsletter-form {
-                flex-direction: column;
-                align-items: center;
+            #popup-box h2 {
+                font-size: 1.7rem;
             }
-            .newsletter-form input[type="email"] {
-                width: 100%;
+            .ebook-icon-large {
+                font-size: 4rem;
+            }
+            .ebook-received h3 {
+                font-size: 1.2rem;
+            }
+            /* Ajustes para o formulário em mobile */
+            .followit--follow-form-container .preview-input-field input[type="email"] {
+                width: calc(100% - 30px) !important; /* Ocupa toda a largura em mobile */
+                padding: 12px 15px !important; /* Padding ajustado */
+                min-width: unset !important;
                 margin-bottom: 10px;
             }
-            .newsletter-form button {
-                width: 100%;
+            .followit--follow-form-container .preview-submit-button button {
+                width: 100% !important;
             }
         }
     </style>
@@ -249,17 +302,21 @@
                 </div>
                 
                 <!-- Formulário Follow.it oficial -->
-                <div class='followit--follow-form-container' style="margin-top: 20px;">
-                    <form action='https://api.follow.it/subscription-form/cThzVXcvQXRIamRTUHdvSVg5TVZlanliOXFpcTkzNVBKZVdCSW9zT3FSNU04SjgxMjJuSisvMlJsYXgzS3QyS3NwdFNWb05BZWkxT0ZUQmZIN0xjbUdiQ1lqVDM3U0tGTmZTQWZRVnJwNjdIN0xjbUdiQ1lqVDM3U0tGTmZTQWZRVnJwNjdINmZ5YWRaVGNjMnB6MldCZEpPRlR8a1hDSXluVU5nekNhRk1JbVlLdEE1bUQxV2dTUVZ3MW0zcjhHbThGalJ3dz0=/8' id='followit-form' method='post' target='_blank'>
-                        <div class='newsletter-form'>
-                            <input id='user-email' name='email' placeholder='Digite seu e-email' required='required' type='email'/>
-                            <button id='subscribe-btn' type='submit'>Assinar e Receber E-book</button>
+                <div class="followit--follow-form-container" style="margin-top: 20px;">
+                    <form data-v-a750b30b="" action="https://follow.it/ecoestatus?leanpub" method="get" target="_blank" id="followit-form-new">
+                        <div data-v-a750b30b="" class="form-preview" style="background-color: rgb(255, 255, 255); position: relative; border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204);">
+                            <div data-v-a750b30b="" class="preview-heading">
+                                <h5 data-v-a750b30b="" style="font-family: Arial; font-weight: bold; color: rgb(0, 0, 0); font-size: 16px; text-align: center; text-transform: none !important;">Get new posts by email:</h5>
+                            </div>
+                            <div data-v-a750b30b="" class="preview-input-field">
+                                <input data-v-a750b30b="" type="email" name="email" required="" placeholder="Enter your email" spellcheck="false" style="font-family: Arial; font-weight: normal; color: rgb(0, 0, 0); font-size: 14px; text-align: center; background-color: rgb(255, 255, 255); text-transform: none !important;">
+                            </div>
+                            <div data-v-a750b30b="" class="preview-submit-button">
+                                <button data-v-a750b30b="" type="submit" style="font-family: Arial; font-weight: bold; color: rgb(255, 255, 255); font-size: 16px; text-align: center; background-color: rgb(0, 0, 0); text-transform: none !important;">Subscribe</button>
+                            </div>
                         </div>
                     </form>
-                    <a class='powered-by-line' href='https://follow.it'>
-                        Powered by 
-                        <img alt='follow.it' height='12px' src='https://follow.it/images/colored-logo.svg' style='vertical-align: middle;'/>
-                    </a>
+                    <a href="https://follow.it" class="powered-by-line">Powered by <img src="https://follow.it/images/colored-logo.svg" alt="follow.it" height="17px"/></a>
                 </div>
                 <div id='initial-privacy-info' class='privacy-info'>
                     <small>📧 Respeitamos sua privacidade. Você pode cancelar a inscrição a qualquer momento.</small>
@@ -275,7 +332,7 @@
                     <p><strong>Checklist Definitivo de Conformidade para Startups</strong></p>
                     <p>Obrigado por se inscrever! <strong>Verifique seu e-mail para confirmar a inscrição</strong> e baixar seu e-book:</p>
                 </div>
-                <a href='https://drive.proton.me/urls/QWYMT6PKFM#EY75XZt-k_O_' onclick='trackDownload()' target='_blank' id="download-ebook-link">🔽 Baixar E-book Agora</a>
+                <a href='https://www.dropbox.com/scl/fi/iisv20zu06p7fsmjrypxj/conformidade_estrategica_startups_ebook_final_com_.pdf?rlkey=b30thfti92i0uz8fvbcvyqyl6&st=btgyo14u&dl=0' target='_blank' id="download-ebook-link">🔽 Baixar E-book Agora</a>
                 <div id='subscribed-privacy-info' class='privacy-info'>
                     <small>📧 Respeitamos sua privacidade. Você pode cancelar a inscrição a qualquer momento.</small>
                 </div>
@@ -292,10 +349,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const popupOverlay = document.getElementById('popup-overlay');
             const closePopupButton = document.getElementById('close-popup');
-            const followitForm = document.getElementById('followit-form');
-            const subscribeBtn = document.getElementById('subscribe-btn');
+            const followitFormNew = document.getElementById('followit-form-new'); // Novo ID para o formulário
             const successMessage = document.getElementById('success-message');
-            const userEmailInput = document.getElementById('user-email');
+            const userEmailInput = followitFormNew.querySelector('input[type="email"]'); // Definido corretamente
+            const subscribeBtn = followitFormNew.querySelector('button[type="submit"]'); // Definido corretamente
 
             const initialPopupContent = document.getElementById('initial-popup-content');
             const subscribedPopupContent = document.getElementById('subscribed-popup-content');
@@ -328,32 +385,21 @@
                 window.location.href = 'https://ecoestatus.blogspot.com/'; 
             }
 
-            // --- Lógica de Interceptação do Formulário Follow.it ---
-            followitForm.addEventListener('submit', function(e) {
-                const email = userEmailInput.value;
-
-                if (!email || !validateEmail(email)) {
-                    e.preventDefault(); // Impede o envio se o e-mail for inválido
-                    showMessage('Por favor, insira um e-mail válido.', true);
-                    return;
-                }
-
-                // Desabilitar o botão e mostrar mensagem de envio
-                subscribeBtn.disabled = true;
-                subscribeBtn.textContent = 'Enviando...';
-                hideMessage(); // Esconde qualquer mensagem anterior
-
-                // Marcar que o usuário se inscreveu permanentemente
+            // --- Lógica de Interceptação do Formulário Follow.it (NOVA) ---
+            followitFormNew.addEventListener('submit', function(e) {
+                // O formulário será submetido diretamente para o Follow.it
+                // O 'target="_blank"' no HTML do formulário já cuida de abrir em nova aba.
+                
+                // Marcar que o usuário se subscreveu (para não mostrar o popup novamente)
                 localStorage.setItem('hasSubscribed', 'true');
 
-                // Transiciona o conteúdo do popup imediatamente
+                // Transiciona o conteúdo do popup e redireciona a página atual
                 initialPopupContent.style.display = 'none';
                 subscribedPopupContent.style.display = 'block';
-                showMessage('🎉 Obrigado por se inscrever! Redirecionando para o Follow.it...', false);
+                showMessage('🎉 Obrigado por se subscrever! Por favor, finalize a subscrição na nova aba e baixe seu e-book.', false);
 
-                // O formulário será submetido naturalmente (target="_blank" cuidará da nova aba)
-                // Após um pequeno atraso, redireciona para o blog principal
-                setTimeout(redirectToMainBlog, 3000); // Redireciona após 3 segundos
+                // Redireciona a página atual do popup para o blog principal após um pequeno atraso
+                setTimeout(redirectToMainBlog, 4000); // Dá tempo para o utilizador ver a nova aba
             });
 
             // --- Lógica de Rastreamento de Download ---
@@ -409,17 +455,15 @@
             userEmailInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault(); // Impede o comportamento padrão de nova linha
-                    followitForm.requestSubmit(); // Simula o clique no botão de submit
+                    subscribeBtn.click(); // Simula o clique no botão de submeter
                 }
             });
 
-            // Se o usuário já se inscreveu, mostra o conteúdo de "já inscrito"
-            // Isso é útil se o usuário voltar a esta página de destino
+            // Se o utilizador já se subscreveu, mostra o conteúdo de "já subscrito"
             if (localStorage.getItem('hasSubscribed')) {
                 initialPopupContent.style.display = 'none';
                 subscribedPopupContent.style.display = 'block';
-                showMessage('Você já está inscrito! Baixe seu e-book.', false);
-                // Não redireciona imediatamente se já inscrito, para que ele possa baixar o e-book novamente
+                showMessage('Você já está subscrito! Baixe seu e-book.', false);
             } else {
                 initialPopupContent.style.display = 'block';
                 subscribedPopupContent.style.display = 'none';
@@ -428,4 +472,3 @@
     </script>
 </body>
 </html>
-
